@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default panel-table">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class=" col-md-4">
+                            <h3 class="panel-title">Query List by the Admin</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control input-md" id="myInput" ng-model="searchText" placeholder="Searching query" type="text">
+                        </div>
+                        <div class="col-md-4 text-right">
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-list">
+                        <thead>
+                            <tr>
+                                <th><em class="fa fa-cog"></em></th>
+                                <th>Query Number</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Query Subject</th>
+                                <th>File</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="data in Data | filter:searchText">
+                            <tr>
+                                <td align="center" style="width:100px; padding:20px 0px">
+                                    <a class="btn btn-default" ng-click="editQuery(data._id)"><em class="fa fa-pencil"></em></a>
+                                    <a class="btn btn-danger"  ng-click="deleteQuery(data._id)"><em class="fa fa-trash"></em></a>
+                                </td>
+                                <td style="max-width:50px ; padding:20px 3px;overflow:hidden;word-wrap: break-word;">{{data._id}}</td>
+                                <td style="max-width:100px; padding:20px 5px;overflow:hidden;word-wrap: break-word;">{{data.user_name}}</td>
+                                <td style="max-width:100px; padding:20px 5px;overflow:hidden;word-wrap: break-word;">{{data.email}}</td>
+                                <td style="max-width:50px;  padding:20px 5px;overflow:hidden;word-wrap: break-word;">{{data.querySub}}</td>
+                                <td style="max-width:30px ; padding:20px 5px;overflow:hidden">{{Data.file}}</td>
+                                <td style="max-width:50px;  padding:20px 5px;overflow:hidden">{{data.status}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="8">Query</th>
+                            </tr>
+                            <tr>
+                                <td colspan="6" >
+                                    <div style="max-width:500px;overflow:hidden">{{data.query}}</div>...
+                                </td>
+                                <td><a href="#detail-admin/{{data.user_name}}/{{data._id}}" ><button type="button" class="btn btn-sm btn-primary btn-create">Details</button></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col col-xs-4">Page 1 of 5
+                        </div>
+                        <div class="col col-xs-8">
+                            <ul class="pagination hidden-xs pull-right">
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                            </ul>
+                            <ul class="pagination visible-xs pull-right">
+                                <li><a href="#">«</a></li>
+                                <li><a href="#">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ui bootstrap model template for signup-->
+<script type="text/ng-template" id="adminEditCtrl.html">
+        <div class="row ui-model-container" style="margin-left:0pc;margin-right:0px">
+        <div class="head-modal">
+            <h3 class="col-md-12 modal-title" style="margin:40px">Edit fields : </h3>
+        </div>
+        <div class="body-modal">
+            <form class="well span6" role="form">
+                <div style="margin:20px 0p 20px 10px"><input class="form-control" type="text" ng-model="edit_data.querySub" placeholder="Query subject..."/></div>
+                <div style="margin:20px 0p 10px 30px"><textarea  ng-model="edit_data.query" rows="5" cols="80" placeholder="Query..."></textarea></div>
+                <button class="btn btn-success" style="left:20px;width:70px;margin:20px 0px 10px 0px" ng-click="edit(edit_data)">Edit</button>
+        </form>
+        </div>
+            </div>
+    </script>
+<!--end of contact model template-->
